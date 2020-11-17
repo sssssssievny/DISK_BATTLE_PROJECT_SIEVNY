@@ -5,13 +5,7 @@ from Board import *
 board =  createBoard(BOARD_ROW,BOARD_COLUMN)
 
 print('WELCOME TO DISK-BATTLE!')
-for i in range(BOARD_COLUMN):
-    print(i, end=' ')
-print()
-for i in range(len(board)):
-    for j in range(len(board[i])):
-        print(board[i][j],end=' ')
-    print()
+printBoard(board)
 
 #PLAY GAME
 noWinner = False
@@ -29,10 +23,4 @@ while not noWinner:
             dropPiece(board,row,col,'Y')
     turn += 1
 
-    for i in range(BOARD_COLUMN):
-        print(i, end=' ')
-    print()
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            print(board[i][j],end=' ')
-        print()
+    printBoard(board)
