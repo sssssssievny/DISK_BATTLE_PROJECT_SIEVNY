@@ -1,17 +1,14 @@
 BOARD_ROW = 6
 BOARD_COLUMN = 7
-rowList = []
 boardList = []
 def createBoard(row,col):
-    for i in range(col):
-        rowList.append('0')
-    for j in range(row):
-        boardList.append(rowList)
+    for i in range(row):
+        boardList.append(['0']*col)
     return boardList
-
 
 def dropPiece(board, row, col, sign):
     board[row][col] = sign
+
 def isAvailable(board,col):
     return board[BOARD_ROW-1][col] == '0'
 
