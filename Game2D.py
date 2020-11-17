@@ -1,6 +1,3 @@
-list = [
-    [1,2,3],
-    [2,4,5],
-]
+array = ['ronan', 'sievny', 'joe']
 
-print(list[-2][1])
+print(array[2])
