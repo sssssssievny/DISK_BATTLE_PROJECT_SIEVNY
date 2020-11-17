@@ -14,8 +14,8 @@ def isAvailable(board,col):
 
 def checkEmptySlot(board,col):
     for i in range(BOARD_ROW):
-        if board[i][col] == '0':
-            return i
+        if board[-(i+1)][col] == '0':
+            return -(i+1)
 
 
 
