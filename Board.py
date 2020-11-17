@@ -12,8 +12,8 @@ def createBoard(row,col):
 
 def dropPiece(board, row, col, sign):
     board[row][col] = sign
-def isAvailable(boardList,col):
-    return boardList[BOARD_ROW-1][col] == '0'
+def isAvailable(board,col):
+    return board[BOARD_ROW-1][col] == '0'
 
 def checkEmptySlot(board,col):
     for i in range(BOARD_ROW):
