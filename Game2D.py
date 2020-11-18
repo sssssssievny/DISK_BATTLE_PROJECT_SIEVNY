@@ -1,3 +1,7 @@
-array = ['ronan', 'sievny', 'joe']
+num1 = 3
+num2 = None
 
-print(array[2])
+def sum(num1, num2):
+    return num1 + num2
+
+print(sum(num1,num2))

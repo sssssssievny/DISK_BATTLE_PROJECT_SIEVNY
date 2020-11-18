@@ -41,8 +41,15 @@ def winCheck(board, sign):
         for j in range(BOARD_ROW):
             if (board[-j][i] == sign and board[-j][i+1] == sign) and (board[-j][i+2] == sign and board[-j][i+3] == sign):
                 return True
+    #VERTICAL CHECK
+    for i in range(BOARD_COLUMN):
+        for j in range(BOARD_ROW-3):
+            if board[j][i] == sign and board[j+1][i] == sign and board[j+2][i] == sign and board[j+3][i] == sign:
+                return True
 
-
+    #DOWNWARD DIAGONAL CHECK
+    
+    #UPWARD DIAGONAL CHECK
 
 
 
