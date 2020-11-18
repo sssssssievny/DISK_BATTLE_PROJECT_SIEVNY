@@ -47,9 +47,35 @@ def winCheck(board, sign):
             if board[j][i] == sign and board[j+1][i] == sign and board[j+2][i] == sign and board[j+3][i] == sign:
                 return True
 
-    #DOWNWARD DIAGONAL CHECK
-    
-    #UPWARD DIAGONAL CHECK
+    #DIAGONAL1 CHECK
+    col = 0
+    for i in range(BOARD_ROW-1):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col+1] == sign and board[i+2][col+2] == sign and board[i+3][col+3] == sign:
+                return True
 
-
+    #DIAGONAL2 CHECK
+    col = 1
+    for i in range(BOARD_ROW-2):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col+1] == sign and board[i+2][col+2] == sign and board[i+3][col+3] == sign:
+                return True
+    #DIAGONAL3 CHECK
+    col = 2
+    for i in range(BOARD_ROW-3):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col+1] == sign and board[i+2][col+2] == sign and board[i+3][col+3] == sign:
+                return True
+    #DIAGONAL4 CHECK
+    col = 3
+    for i in range(BOARD_ROW-3):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col+1] == sign and board[i+2][col+2] == sign and board[i+3][col+3] == sign:
+                return True
+    #DIAGONAL5 CHECK
+    col = -1
+    for i in range(BOARD_ROW-3):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col-1] == sign and board[i+2][col-2] == sign and board[i+3][col-3] == sign:
+                return True
 
