@@ -79,3 +79,15 @@ def winCheck(board, sign):
             if board[i][col] == sign and board[i+1][col-1] == sign and board[i+2][col-2] == sign and board[i+3][col-3] == sign:
                 return True
 
+    #DIAGONAL6 CHECK
+    col = -2
+    for i in range(BOARD_ROW-3):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col-1] == sign and board[i+2][col-2] == sign and board[i+3][col-3] == sign:
+                return True
+    col = -3
+    for i in range(BOARD_ROW-3):
+        for j in range(BOARD_COLUMN):
+            if board[i][col] == sign and board[i+1][col-1] == sign and board[i+2][col-2] == sign and board[i+3][col-3] == sign:
+                return True
+
