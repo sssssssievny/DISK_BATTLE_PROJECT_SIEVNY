@@ -50,8 +50,9 @@ def playGame():
         turn += 1
 
             #PRINT BOARD EACH TIME, AFTER EACH PLAYER INPUT()
-
         printBoard(board)
+
+
 def resetBoard(board):
     for i in range(BOARD_ROW):
         for j in range(BOARD_COLUMN):
@@ -90,6 +91,8 @@ def checkEmptySlot(board,col):
         if board[-(i+1)][col] == '0':
             return -(i+1)
 
+
+#CHECK POSSIBLE WINNING SHAPE
 def winCheck(board, sign):
     #HORIZONTAL CHECK
     for i in range(BOARD_COLUMN - 3):
