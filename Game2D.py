@@ -1,31 +1,13 @@
-# 1  1  1  X  1  1  1
-# 1  1  X  X  1  1  1
-# 1  X  X  X  X  X  X
-# X  X  X  X  X  X  1
-# X  X  X  X  X  1  1
-# X  X  X  X  1  1  1
+import pygame
+from Board import *
 
-# Enter your code here:
+pygame.init()
 
-nOfValues = int(input()) 
-sum = 0 
-count = 0 
+SQUARESIZE = 100
 
-for i in range(nOfValues):
-    number = int(input())
-    sum = sum + number
-    count = count + 1 
-calAverage = sum / count
+width = BOARD_COLUMN * SQUARESIZE
+height = (BOARD_ROW+1) * SQUARESIZE
 
-good = calAverage >= 80 and calAverage <= 100 
-middle = calAverage >= 50 and calAverage < 80 
-low = calAverage >= 0 and calAverage < 50
+size = (width,height)
 
-if good:
-    print('GOOD') 
-elif middle:
-    print('MIDDLE') 
-elif low:
-    print('LOW') 
-else:
-    print('ERROR')
+screen = pygame.display.set_mode(size)
