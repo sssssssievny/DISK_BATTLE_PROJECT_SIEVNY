@@ -57,10 +57,18 @@ def playGame():
 def startGame():
     validInput = True
     while validInput:
-        startGame = input('TYPE <S> TO START GAME: ')
-        if startGame == 'S':
+        start = input('TYPE <S> TO START GAME: ')
+        if start == 'S':
             validInput = False
     printBoard(board)
+    playGame()
+
+def restartGame():
+    validInput = True
+    while validInput:
+        restart = input('TYPE <R> TO RE-START GAME: ')
+        if restart == 'R':
+            validInput = False
     playGame()
 
 def dropPiece(board, row, col, sign):

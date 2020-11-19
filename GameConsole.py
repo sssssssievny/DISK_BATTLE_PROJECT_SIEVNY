@@ -8,5 +8,6 @@ printBoard(board)
 #START GAME FOR THE FIRST TIME
 
 startGame()
+restartGame()
 
 #RESTART GAME
