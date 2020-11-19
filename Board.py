@@ -52,6 +52,10 @@ def playGame():
             #PRINT BOARD EACH TIME, AFTER EACH PLAYER INPUT()
 
         printBoard(board)
+def resetBoard(board):
+    for i in range(BOARD_ROW):
+        for j in range(BOARD_COLUMN):
+            board[i][j] = '0'
 
 
 def startGame():
@@ -69,6 +73,8 @@ def restartGame():
         restart = input('TYPE <R> TO RE-START GAME: ')
         if restart == 'R':
             validInput = False
+    resetBoard(board)
+    printBoard(board)
     playGame()
 
 def dropPiece(board, row, col, sign):
