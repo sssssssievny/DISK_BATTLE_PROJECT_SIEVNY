@@ -1,6 +1,7 @@
-
+import sys
+from Game2D import *
 #GLOBAL VALUES FOR ROW AND COLUMN (CONSTANTS)
-
+BLUE = (0,0,255)
 BOARD_ROW = 6
 BOARD_COLUMN = 7
 boardList = []
@@ -25,58 +26,61 @@ def printBoard(board):
         print()
 
 
-def playGame():
-    over = False
-    turn = 0
-    while not over:
-        #WHEN TURN IS EVEN, PLAYER1 TURN TO PLAY!
-        if turn % 2 == 0:
-            col = int(input('Player1 (enter any number from 0-6): '))
-            if isAvailable(board, col):
-                row = checkEmptySlot(board,col)
-                dropPiece(board,row,col,'X')
-                if winCheck(board,'X'):
-                    print('PLAYER1 WON!')
-                    over = True
-        #WHEN TURN IS ODD, PLAYER2 TURN TO PLAY!
-        else:
-            col = int(input('Player2 (enter any number from 0-6): '))
-            if isAvailable(board, col):
-                row = checkEmptySlot(board,col)
-                dropPiece(board,row,col,'Y')
-                if winCheck(board,'Y'):
-                    print('PLAYER2 WON!')
-                    over = True
-        turn += 1
+# def playGame():
+    # over = False
+    # turn = 0
+    # while not over:
+    #     for event in playGame.event.get():
+    #         if event.type == pygame.QUIT:
+    #             sys.exit()
+    #     #WHEN TURN IS EVEN, PLAYER1 TURN TO PLAY!
+    #     if turn % 2 == 0:
+    #         col = int(input('Player1 (enter any number from 0-6): '))
+    #         if isAvailable(board, col):
+    #             row = checkEmptySlot(board,col)
+    #             dropPiece(board,row,col,'X')
+    #             if winCheck(board,'X'):
+    #                 print('PLAYER1 WON!')
+    #                 over = True
+    #     #WHEN TURN IS ODD, PLAYER2 TURN TO PLAY!
+    #     else:
+    #         col = int(input('Player2 (enter any number from 0-6): '))
+    #         if isAvailable(board, col):
+    #             row = checkEmptySlot(board,col)
+    #             dropPiece(board,row,col,'Y')
+    #             if winCheck(board,'Y'):
+    #                 print('PLAYER2 WON!')
+    #                 over = True
+    #     turn += 1
 
-            #PRINT BOARD EACH TIME, AFTER EACH PLAYER INPUT()
-        printBoard(board)
-
-
-def resetBoard(board):
-    for i in range(BOARD_ROW):
-        for j in range(BOARD_COLUMN):
-            board[i][j] = '0'
+    #         #PRINT BOARD EACH TIME, AFTER EACH PLAYER INPUT()
+    #     printBoard(board)
 
 
-def startGame():
-    validInput = True
-    while validInput:
-        start = input('TYPE <S> TO START GAME: ')
-        if start == 'S':
-            validInput = False
-    printBoard(board)
-    playGame()
+# def resetBoard(board):
+#     for i in range(BOARD_ROW):
+#         for j in range(BOARD_COLUMN):
+#             board[i][j] = '0'
 
-def restartGame():
-    validInput = True
-    while validInput:
-        restart = input('TYPE <R> TO RE-START GAME: ')
-        if restart == 'R':
-            validInput = False
-    resetBoard(board)
-    printBoard(board)
-    playGame()
+
+# def startGame():
+#     validInput = True
+#     while validInput:
+#         start = input('TYPE <S> TO START GAME: ')
+#         if start == 'S':
+#             validInput = False
+#     printBoard(board)
+#     playGame()
+
+# def restartGame():
+#     validInput = True
+#     while validInput:
+#         restart = input('TYPE <R> TO RE-START GAME: ')
+#         if restart == 'R':
+#             validInput = False
+#     resetBoard(board)
+#     printBoard(board)
+#     playGame()
 
 def dropPiece(board, row, col, sign):
     board[row][col] = sign
@@ -117,3 +121,8 @@ def winCheck(board, sign):
         for j in range(BOARD_ROW-2):
             if board[-(j+1)][i] == sign and board[-(j+2)][i+1] == sign and board[-(j+3)][i+2] == sign and board[-(j+4)][i+3] == sign:
                 return True
+
+def draw_board(board):
+    for i in range(BOARD_COLUMN):
+        for j in range(BOARD_ROW):
+            pygame.draw.rect(screen,BLUE, (c*SQUARESIZE, r*SQUARESIZE, SQUARESIZE, SQUARESIZE))
