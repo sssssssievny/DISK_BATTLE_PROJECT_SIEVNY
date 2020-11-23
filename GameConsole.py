@@ -1,5 +1,6 @@
 from Board import *
 
+#CREATE BOARD
 
 board =  createBoard(BOARD_ROW,BOARD_COLUMN)
 
@@ -8,6 +9,8 @@ board =  createBoard(BOARD_ROW,BOARD_COLUMN)
 print('WELCOME TO DISK-BATTLE!')
 printBoard(board)
 
+#START GAME
+#PLAYER1 REPRESENTS BY X, PLAYER2 REPRESENT BY Y
 over = False
 turn = 0
 while not over:
