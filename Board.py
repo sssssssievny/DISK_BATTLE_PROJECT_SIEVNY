@@ -11,10 +11,6 @@ def createBoard(row,col):
         boardList.append(['0']*col)
     return boardList
 
-# CREATE BOARD
-
-board =  createBoard(BOARD_ROW,BOARD_COLUMN)
-
 def printBoard(board): 
     for i in range(BOARD_COLUMN):
         print(i, end=' ')
@@ -24,65 +20,16 @@ def printBoard(board):
             print(board[i][j],end=' ')
         print()
 
-
-def playGame():
-    over = False
-    turn = 0
-    while not over:
-        #WHEN TURN IS EVEN, PLAYER1 TURN TO PLAY!
-        if turn % 2 == 0:
-            col = int(input('Player1 (enter any number from 0-6): '))
-            if isAvailable(board, col):
-                row = checkEmptySlot(board,col)
-                dropPiece(board,row,col,'X')
-                if winCheck(board,'X'):
-                    print('PLAYER1 WON!')
-                    over = True
-        #WHEN TURN IS ODD, PLAYER2 TURN TO PLAY!
-        else:
-            col = int(input('Player2 (enter any number from 0-6): '))
-            if isAvailable(board, col):
-                row = checkEmptySlot(board,col)
-                dropPiece(board,row,col,'Y')
-                if winCheck(board,'Y'):
-                    print('PLAYER2 WON!')
-                    over = True
-        turn += 1
-
-            #PRINT BOARD EACH TIME, AFTER EACH PLAYER INPUT()
-        printBoard(board)
-
-
 def resetBoard(board):
     for i in range(BOARD_ROW):
         for j in range(BOARD_COLUMN):
             board[i][j] = '0'
 
-
-def startGame():
-    validInput = True
-    while validInput:
-        start = input('TYPE <S> TO START GAME: ')
-        if start == 'S':
-            validInput = False
-    printBoard(board)
-    playGame()
-
-def restartGame():
-    validInput = True
-    while validInput:
-        restart = input('TYPE <R> TO RE-START GAME: ')
-        if restart == 'R':
-            validInput = False
-    resetBoard(board)
-    printBoard(board)
-    playGame()
-
 def dropPiece(board, row, col, sign):
     board[row][col] = sign
 
 
-def isAvailable(board,col):
+def canPlay(board,col):
     return board[0][col] == '0'
 
 
