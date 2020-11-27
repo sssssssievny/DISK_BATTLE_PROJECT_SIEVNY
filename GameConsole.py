@@ -1,38 +1,49 @@
-from Board import *
+import Board
+from termcolor import colored, cprint
 
-#CREATE BOARD
-
-board =  createBoard(BOARD_ROW,BOARD_COLUMN)
 
 #PRINT BOARD BEFORE STARTING GAME
+def printBoard(): 
+    for i in range(Board.BOARD_COLUMN):
+        print(i, end=' ')
+    print()
+    for i in range(len(Board.board)):
+        for j in range(len(Board.board[i])):
+            print(Board.board[i][j],end=' ')
+        print()
+
 
 print('WELCOME TO DISK-BATTLE!')
-printBoard(board)
+printBoard()
 
 #START GAME
 #PLAYER1 REPRESENTS BY X, PLAYER2 REPRESENT BY Y
 over = False
-turn = 0
 while not over:
-        #WHEN TURN IS EVEN, PLAYER1 TURN TO PLAY!
-    if turn % 2 == 0:
-        col = int(input('Player1 (enter any number from 0-6): '))
-        if canPlay(board, col):
-            row = checkEmptySlot(board,col)
-            dropPiece(board,row,col,'X')
-            if winCheck(board,'X'):
-                print('PLAYER1 WON!')
-                over = True
-        #WHEN TURN IS ODD, PLAYER2 TURN TO PLAY!
+    #GET SIGN
+    if Board.currentPlayer == Board.PLAYER_ONE:
+        sign = 'X'
     else:
-        col = int(input('Player2 (enter any number from 0-6): '))
-        if canPlay(board, col):
-            row = checkEmptySlot(board,col)
-            dropPiece(board,row,col,'Y')
-            if winCheck(board,'Y'):
-                print('PLAYER2 WON!')
-                over = True
-    turn += 1
+        sign = 'O'
 
-            #PRINT BOARD EACH TIME, AFTER EACH PLAYER INPUT()
-    printBoard(board)
+    #ASK FOR USER INPUT
+    askCol = 'Player ' + str(Board.currentPlayer) + ' turn (Enter column 1-6): '
+    col = input(askCol)
+    if col != '':
+        col = int(col)
+        if Board.isValidInput(col):
+            if Board.canPlay(Board.board, col):
+                row = Board.getEmptyRow(Board.board,col)
+                Board.dropPiece(Board.board,row,col, sign)
+                if Board.winCheck(Board.board, sign):
+                    cprint('PLAYER1 WON!','blue', attrs=['bold'])
+                    over = True
+                Board.switchPlay()
+                printBoard()
+        else:
+            cprint('You input is invalid!', 'red', attrs=['bold'])
+    else:
+        cprint('Your input is empty!', 'red', attrs=['bold'])
+
+
+

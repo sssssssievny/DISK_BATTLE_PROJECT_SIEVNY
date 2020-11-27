@@ -5,37 +5,56 @@ BOARD_ROW = 6
 BOARD_COLUMN = 7
 boardList = []
 
+PLAYER_ONE = 1
+PLAYER_TWO = 2
+
+
+
+
+currentPlayer = PLAYER_ONE  # At game start
+
+def switchPlay():
+    global currentPlayer
+    if currentPlayer == PLAYER_ONE:
+        currentPlayer = PLAYER_TWO
+    else:
+        currentPlayer = PLAYER_ONE
+
+    return currentPlayer
 
 def createBoard(row,col):
     for i in range(row):
-        boardList.append(['0']*col)
+        boardList.append(['.']*col)
     return boardList
 
-def printBoard(board): 
-    for i in range(BOARD_COLUMN):
-        print(i, end=' ')
-    print()
-    for i in range(len(board)):
-        for j in range(len(board[i])):
-            print(board[i][j],end=' ')
-        print()
+#CREATE BOARD
+board =  createBoard(BOARD_ROW,BOARD_COLUMN)
 
-def resetBoard(board):
+
+#RESET BOARD
+def resetBoard():
     for i in range(BOARD_ROW):
         for j in range(BOARD_COLUMN):
-            board[i][j] = '0'
+            board[i][j] = '.'
 
+
+def isValidInput(column_no):
+    if column_no >=0 and column_no <=7:
+        return True
+    else:
+        return False
+#UPDATE THE SIGN TO BOARD
 def dropPiece(board, row, col, sign):
     board[row][col] = sign
 
-
+#CHECK IF COLUMN IS NOT FULL
 def canPlay(board,col):
-    return board[0][col] == '0'
+    return board[0][col] == '.'
 
-
-def checkEmptySlot(board,col):
+#GET EMPTY ROW 
+def getEmptyRow(board,col):
     for i in range(BOARD_ROW):
-        if board[-(i+1)][col] == '0':
+        if board[-(i+1)][col] == '.':
             return -(i+1)
 
 
