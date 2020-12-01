@@ -9,7 +9,10 @@ PLAYER_ONE = 1
 PLAYER_TWO = 2
 
 
-
+NO_WINNER = 'ON_PROGRESS'
+RED_WINNER = 'RED_WON'
+YELLOW_WINNER = 'YELLOW_WON'
+BOARD_FULL = 'BOARD_FULL'
 
 currentPlayer = PLAYER_ONE  # At game start
 
@@ -31,11 +34,9 @@ def createBoard(row,col):
 board =  createBoard(BOARD_ROW,BOARD_COLUMN)
 
 
-#RESET BOARD
-def resetBoard():
-    for i in range(BOARD_ROW):
-        for j in range(BOARD_COLUMN):
-            board[i][j] = '.'
+#CLEAR BOARD
+def clearBoard():
+    board = createBoard(BOARD_ROW,BOARD_COLUMN)
 
 
 def isValidInput(column_no):
@@ -44,27 +45,42 @@ def isValidInput(column_no):
     else:
         return False
 #UPDATE THE SIGN TO BOARD
-def dropPiece(board, row, col, sign):
+def dropPiece(row, col, sign):
     board[row][col] = sign
 
 #CHECK IF COLUMN IS NOT FULL
-def canPlay(board,col):
+def canPlay(col):
     return board[0][col] == '.'
 
 #GET EMPTY ROW 
-def getEmptyRow(board,col):
+def getEmptyRow(col):
     for i in range(BOARD_ROW):
         if board[-(i+1)][col] == '.':
             return -(i+1)
 
 
+
+#PLAY RED OR YELLOW
+def play(sign, col):
+        if canPlay(col):
+            row = getEmptyRow(col)
+            dropPiece(row,col,sign)
+
+
+
+
+
+
 #CHECK POSSIBLE WINNING SHAPE
-def winCheck(board, sign):
+def winCheck(sign):
     #HORIZONTAL CHECK
     for i in range(BOARD_COLUMN - 3):
         for j in range(BOARD_ROW):
             if (board[-j][i] == sign and board[-j][i+1] == sign) and (board[-j][i+2] == sign and board[-j][i+3] == sign):
-                return True
+                if sign == 'R':
+                    return RED_WINNER
+                else:
+                    return YELLOW_WINNER
     #VERTICAL CHECK
     for i in range(BOARD_COLUMN):
         for j in range(BOARD_ROW-3):
@@ -83,3 +99,5 @@ def winCheck(board, sign):
         for j in range(BOARD_ROW-2):
             if board[-(j+1)][i] == sign and board[-(j+2)][i+1] == sign and board[-(j+3)][i+2] == sign and board[-(j+4)][i+3] == sign:
                 return True
+
+
